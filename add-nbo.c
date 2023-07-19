@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
 
-uint32_t ntohl_custom(uint32_t netlong) {
-    uint32_t byte1 = (netlong >> 24) & 0xFF;
-    uint32_t byte2 = (netlong >> 16) & 0xFF;
-    uint32_t byte3 = (netlong >> 8) & 0xFF;
-    uint32_t byte4 = netlong & 0xFF;
-
-    return (byte1 << 0) | (byte2 << 8) | (byte3 << 16) | (byte4 << 24);
-}
-
 int main(int argc, char*argv[])
 {
     if (argc < 3)
@@ -31,8 +22,8 @@ int main(int argc, char*argv[])
     fread(&num1, sizeof(uint32_t), 1, file1);
     fread(&num2, sizeof(uint32_t), 1, file2);
 
-    num1 = ntohl_custom(num1);
-    num2 = ntohl_custom(num2);
+    num1 = ntohl(num1);
+    num2 = ntohl(num2);
 
     fclose(file1);
     fclose(file2);
